@@ -1,0 +1,6 @@
+﻿services:
+  ukg.hcm:
+    image: ukg.hcm
+    build:
+      context: .
+      dockerfile: UKG.HCM/Dockerfile
