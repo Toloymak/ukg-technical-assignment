@@ -1,6 +1,7 @@
 using UKG.HCM.Application.Entities;
 using UKG.HCM.Application.Persistence;
 using UKG.HCM.Application.Services.People.Create;
+using UnitTests.Common.Extensions;
 
 namespace UKG.HCM.Application.Tests.Services;
 

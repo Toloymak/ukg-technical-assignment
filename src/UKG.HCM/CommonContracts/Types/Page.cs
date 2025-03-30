@@ -2,7 +2,7 @@ namespace CommonContracts.Types;
 
 public class Page<T>
 {
-    public List<T> Items { get; set; } = new();
+    public required IReadOnlyCollection<T> Items { get; set; }
     
     public required int TotalCount { get; set; }
     public required int PageNumber { get; set; }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using UKG.HCM.Application.Persistence;
 using UKG.HCM.Application.Services.People.Get;
+using UnitTests.Common.Extensions;
 
 namespace UKG.HCM.Application.Tests.Services;
 

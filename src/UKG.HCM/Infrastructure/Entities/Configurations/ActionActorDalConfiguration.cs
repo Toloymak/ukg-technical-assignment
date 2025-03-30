@@ -1,3 +1,4 @@
+using CommonContracts.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,5 +25,10 @@ internal class ActionActorDalConfiguration : IEntityTypeConfiguration<ActionActo
             .WithMany()
             .HasForeignKey(a => a.PersonId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasData(new ActionActorDal(DefaultNames.AnonymousActorName)
+        {
+            ActorId = DefaultNames.AnonymousActorGuid,
+        });
     }
 }

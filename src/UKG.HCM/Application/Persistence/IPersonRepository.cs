@@ -1,6 +1,7 @@
 using CommonContracts.Types;
 using LanguageExt;
 using UKG.HCM.Application.Entities;
+using UKG.HCM.Application.Errors;
 
 namespace UKG.HCM.Application.Persistence;
 
@@ -19,10 +20,10 @@ public interface IPeopleRepository
     Task<Page<PersonDto>> GetList(int pageNumber, int pageSize, CancellationToken ct);
     
     /// Update a person
-    Task Update(Person person, CancellationToken ct);
+    Task<Either<NotFoundError, Unit>> Update(Person person, CancellationToken ct);
     
     /// Delete a person
-    Task Delete(Guid id, CancellationToken ct);
+    Task Delete(Guid personId, CancellationToken ct);
 
     /// Check if a person exists
     Task<bool> IsPersonExists(Guid id, CancellationToken ct);

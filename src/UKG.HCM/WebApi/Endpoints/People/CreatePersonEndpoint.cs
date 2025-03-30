@@ -12,7 +12,7 @@ public class CreatePersonEndpoint : IEndpointDefinition
 {
     /// <inheritdoc />
     public static void Define(IEndpointRouteBuilder builder) => builder
-        .MapGet("people/create", CreatePerson)
+        .MapPost("people/create", CreatePerson)
         .RequireAuthorizationPolicy(Policies.People.Create.Name)
         .WithTags(SwaggerTags.People)
         .WithDescription("Gets all people with pagination");

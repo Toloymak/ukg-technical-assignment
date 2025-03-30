@@ -1,6 +1,6 @@
 namespace UKG.HCM.Application.Entities;
 
-public class Person
+public record Person
 {
     public required Guid PersonId { get; set; }
     

@@ -1,6 +1,7 @@
 using CommonContracts.Constants;
 using LanguageExt;
 using UKG.HCM.Application.Services.People;
+using UnitTests.Common.Extensions;
 
 namespace UKG.HCM.Application.Tests.Services;
 

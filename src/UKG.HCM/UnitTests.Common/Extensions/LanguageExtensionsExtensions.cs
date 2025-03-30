@@ -1,7 +1,8 @@
+using FluentAssertions;
 using FluentAssertions.Primitives;
 using LanguageExt;
 
-namespace UKG.HCM.Application.Tests;
+namespace UnitTests.Common.Extensions;
 
 using static FluentAssertions.AssertionExtensions;
 

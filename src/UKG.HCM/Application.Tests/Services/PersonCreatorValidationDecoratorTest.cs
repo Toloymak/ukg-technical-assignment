@@ -2,6 +2,7 @@ using LanguageExt;
 using UKG.HCM.Application.Errors;
 using UKG.HCM.Application.Services.People;
 using UKG.HCM.Application.Services.People.Create;
+using UnitTests.Common.Extensions;
 
 namespace UKG.HCM.Application.Tests.Services;
 

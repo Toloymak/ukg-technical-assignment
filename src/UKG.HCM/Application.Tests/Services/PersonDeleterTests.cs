@@ -1,5 +1,6 @@
 using UKG.HCM.Application.Persistence;
 using UKG.HCM.Application.Services.People.Delete;
+using UnitTests.Common.Extensions;
 
 namespace UKG.HCM.Application.Tests.Services;
 

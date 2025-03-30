@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using UKG.HCM.Application.Services;
 using UKG.HCM.Application.Services.People;
 using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.Application.Services.People.Delete;
@@ -18,9 +19,10 @@ public static class CompositionRoot
             .Decorate<IDeletePerson, PersonDeleterEntityCheckDecorator>()
             .AddTransient<IProvidePeople, PeopleProvider>()
             .AddTransient<IUpdatePerson, PersonUpdater>()
-            .Decorate<IUpdatePerson, PersonUpdaterEntityCheckDecorator>()
             .Decorate<IUpdatePerson, PersonUpdaterValidationDecorator>()
             .AddTransient<IPersonDataValidator, PersonDataValidator>()
+            .AddTransient<ICurrentActorProvider, CurrentActorProvider>()
+            .AddSingleton<IProvideCurrentDateTime, DateTimeProvideCurrent>()
             ;
         
         return services;
