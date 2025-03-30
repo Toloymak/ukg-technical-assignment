@@ -1,10 +1,10 @@
-using Application.BusinessServices.People.Delete;
-using Application.Errors;
 using FluentAssertions;
 using LanguageExt;
+using UKG.HCM.Application.Errors;
+using UKG.HCM.Application.Services.People.Delete;
 using UKG.HCM.WebApi.Endpoints.People;
 
-namespace WebApi.Tests.Endpoints;
+namespace UKG.HCM.WebApi.Tests.Endpoints;
 
 public class DeletePersonEndpointTests: BaseUnitTest
 {

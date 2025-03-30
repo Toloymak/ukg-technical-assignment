@@ -1,4 +1,4 @@
-namespace Application.BusinessServices.People.Create;
+namespace UKG.HCM.Application.Services.People.Create;
 
 public class PersonCreateCommand
 {

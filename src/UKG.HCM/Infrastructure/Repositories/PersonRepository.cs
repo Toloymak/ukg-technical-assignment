@@ -1,4 +1,4 @@
-namespace Infrastructure.Repositories;
+namespace UKG.HCM.Infrastructure.Repositories;
 
 public class PersonRepository
 {

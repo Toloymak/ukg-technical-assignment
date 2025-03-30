@@ -1,10 +1,10 @@
-using Application.BusinessServices.People.Get;
 using CommonContracts.Types;
 using FluentAssertions;
 using LanguageExt;
+using UKG.HCM.Application.Services.People.Get;
 using UKG.HCM.WebApi.Endpoints.People;
 
-namespace WebApi.Tests.Endpoints;
+namespace UKG.HCM.WebApi.Tests.Endpoints;
 
 [TestFixture]
 public class GetPersonEndpointTests : BaseUnitTest

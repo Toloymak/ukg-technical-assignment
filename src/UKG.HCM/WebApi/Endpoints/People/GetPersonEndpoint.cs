@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Application.BusinessServices.People.Get;
 using CommonContracts.Types;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using UKG.HCM.Application.Services.People.Get;
 using UKG.HCM.WebApi.Configuration.Swagger;
 using UKG.HCM.WebApi.Extensions;
 

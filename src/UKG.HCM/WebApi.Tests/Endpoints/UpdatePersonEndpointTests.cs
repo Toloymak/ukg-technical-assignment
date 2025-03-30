@@ -1,12 +1,12 @@
-using Application.BusinessServices.People.Update;
-using Application.Errors;
-using Contracts.Dtos.People;
+using ApiContracts.Dtos.People;
 using FluentAssertions;
 using LanguageExt;
+using UKG.HCM.Application.Errors;
+using UKG.HCM.Application.Services.People.Update;
 using UKG.HCM.WebApi.Endpoints.People;
 using UKG.HCM.WebApi.Mappers;
 
-namespace WebApi.Tests.Endpoints;
+namespace UKG.HCM.WebApi.Tests.Endpoints;
 
 [TestFixture]
 public class UpdatePersonEndpointTests : BaseUnitTest

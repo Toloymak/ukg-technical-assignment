@@ -1,6 +1,6 @@
-using Application.BusinessServices.People.Create;
-using Application.BusinessServices.People.Update;
-using Contracts.Dtos.People;
+using ApiContracts.Dtos.People;
+using UKG.HCM.Application.Services.People.Create;
+using UKG.HCM.Application.Services.People.Update;
 
 namespace UKG.HCM.WebApi.Mappers;
 

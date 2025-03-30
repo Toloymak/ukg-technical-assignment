@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Errors;
+namespace UKG.HCM.Application.Errors;
 
 public class ForbidError : ErrorResult
 {

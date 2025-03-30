@@ -1,7 +1,7 @@
-using Application.Errors;
 using LanguageExt;
+using UKG.HCM.Application.Errors;
 
-namespace Application.BusinessServices.People.Update;
+namespace UKG.HCM.Application.Services.People.Update;
 
 /// Create a person
 public interface IUpdatePerson
@@ -9,5 +9,5 @@ public interface IUpdatePerson
     /// Create a new person
     Task<Either<ErrorResult, Unit>> Update(
         PersonUpdateCommand command,
-        CancellationToken cancellationToken);
+        CancellationToken ct);
 }

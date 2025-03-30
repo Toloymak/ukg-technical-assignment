@@ -1,7 +1,7 @@
-using Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
+using UKG.HCM.Infrastructure.Entities;
 
-namespace Infrastructure.Contexts;
+namespace UKG.HCM.Infrastructure.Contexts;
 
 public class PeopleDbContext : DbContext
 {

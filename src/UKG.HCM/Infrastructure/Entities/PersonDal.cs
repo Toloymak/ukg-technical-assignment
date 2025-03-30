@@ -1,4 +1,4 @@
-namespace Infrastructure.Entities;
+namespace UKG.HCM.Infrastructure.Entities;
 
 /// Person
 public class PersonDal

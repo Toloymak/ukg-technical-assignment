@@ -1,4 +1,4 @@
-namespace WebApi.Tests;
+namespace UKG.HCM.WebApi.Tests;
 
 public abstract class BaseUnitTest
 {

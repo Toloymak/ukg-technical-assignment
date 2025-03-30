@@ -1,7 +1,7 @@
-using Application.BusinessServices.People.Create;
-using Contracts.Dtos.People;
+using ApiContracts.Dtos.People;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.WebApi.Configuration.Swagger;
 using UKG.HCM.WebApi.Extensions;
 using UKG.HCM.WebApi.Mappers;

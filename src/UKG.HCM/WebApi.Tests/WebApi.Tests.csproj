@@ -6,6 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
+        <AssemblyName>UKG.HCM.WebApi.Tests</AssemblyName>
+        <RootNamespace>UKG.HCM.WebApi.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

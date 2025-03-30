@@ -1,4 +1,4 @@
-namespace Infrastructure.Entities;
+namespace UKG.HCM.Infrastructure.Entities;
 
 /// ActionActor. It might be person, system or service
 public class ActionActorDal

@@ -1,4 +1,4 @@
-namespace Application.BusinessServices.People.Update;
+namespace UKG.HCM.Application.Services.People.Update;
 
 public record PersonUpdateCommand
 {

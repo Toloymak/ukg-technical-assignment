@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Contracts.Dtos.People;
+namespace ApiContracts.Dtos.People;
 
 [PublicAPI]
 public sealed record UpdatePersonRequest

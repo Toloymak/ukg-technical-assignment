@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <RootNamespace>UKG.HCM.WebApi</RootNamespace>
+        <AssemblyName>UKG.HCM.WebApi</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

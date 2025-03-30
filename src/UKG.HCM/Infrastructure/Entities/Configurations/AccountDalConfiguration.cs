@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Entities.Configurations;
+namespace UKG.HCM.Infrastructure.Entities.Configurations;
 
 internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
 {

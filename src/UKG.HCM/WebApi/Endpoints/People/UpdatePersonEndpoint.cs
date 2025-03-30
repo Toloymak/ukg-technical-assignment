@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using Application.BusinessServices.People.Update;
-using Application.Errors;
-using Contracts.Dtos.People;
+using ApiContracts.Dtos.People;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using UKG.HCM.Application.Errors;
+using UKG.HCM.Application.Services.People.Update;
 using UKG.HCM.WebApi.Configuration.Swagger;
 using UKG.HCM.WebApi.Extensions;
 using UKG.HCM.WebApi.Mappers;

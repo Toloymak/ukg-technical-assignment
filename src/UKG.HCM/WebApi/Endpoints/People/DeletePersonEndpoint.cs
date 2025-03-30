@@ -1,6 +1,6 @@
-using Application.BusinessServices.People.Delete;
-using Application.Errors;
 using Microsoft.AspNetCore.Mvc;
+using UKG.HCM.Application.Errors;
+using UKG.HCM.Application.Services.People.Delete;
 using UKG.HCM.WebApi.Configuration.Swagger;
 using UKG.HCM.WebApi.Extensions;
 using DeletePersonResult = Microsoft.AspNetCore.Http.HttpResults.Results<

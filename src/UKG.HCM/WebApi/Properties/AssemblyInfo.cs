@@ -1,3 +1,3 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("WebApi.Tests")]
+[assembly: InternalsVisibleTo("UKG.HCM.WebApi.Tests")]

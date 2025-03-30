@@ -1,7 +1,7 @@
-using Application.Errors;
 using LanguageExt;
+using UKG.HCM.Application.Errors;
 
-namespace Application.BusinessServices.People.Create;
+namespace UKG.HCM.Application.Services.People.Create;
 
 /// Create a person
 public interface ICreatePerson
@@ -9,5 +9,5 @@ public interface ICreatePerson
     /// Create a new person
     Task<Either<ErrorResult, Guid>> Create(
         PersonCreateCommand command,
-        CancellationToken cancellationToken);
+        CancellationToken ct);
 }

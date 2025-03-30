@@ -1,11 +1,11 @@
-using Application.BusinessServices.People.Create;
-using Application.Errors;
-using Contracts.Dtos.People;
+using ApiContracts.Dtos.People;
 using FluentAssertions;
+using UKG.HCM.Application.Errors;
+using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.WebApi.Endpoints.People;
 using UKG.HCM.WebApi.Mappers;
 
-namespace WebApi.Tests.Endpoints;
+namespace UKG.HCM.WebApi.Tests.Endpoints;
 
 [TestFixture]
 public class CreatePersonEndpointTests : BaseUnitTest
