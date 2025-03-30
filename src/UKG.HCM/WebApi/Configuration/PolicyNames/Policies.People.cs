@@ -4,10 +4,28 @@ public static class Policies
 {
     public static class People
     {
-        public static RoleBasedPolicy ReadAll = new()
+        public static readonly RoleBasedPolicy ReadAll = new()
         {
             Name = "People.ReadAll",
-            Roles = new[] { "Admin", "HR" }
+            Roles = ["Admin", "HR"]
+        };
+        
+        public static readonly RoleBasedPolicy Create = new()
+        {
+            Name = "People.Create",
+            Roles = ["Admin", "HR"]
+        };
+        
+        public static readonly RoleBasedPolicy Update = new()
+        {
+            Name = "People.Update",
+            Roles = ["Admin", "HR"]
+        };
+        
+        public static readonly RoleBasedPolicy Delete = new()
+        {
+            Name = "People.Delete",
+            Roles = ["Admin", "HR"]
         };
     }
     
@@ -15,6 +33,6 @@ public static class Policies
 
 public class RoleBasedPolicy
 {
-    public string Name { get; init; }
-    public string[] Roles { get; init; }
+    public required string Name { get; init; }
+    public required string[] Roles { get; init; }
 }

@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
+using Application.BusinessServices.People.Get;
+using CommonContracts.Types;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using UKG.HCM.WebApi.Configuration.PolicyNames;
 using UKG.HCM.WebApi.Configuration.Swagger;
 using UKG.HCM.WebApi.Extensions;
 
@@ -12,20 +13,19 @@ public class GetPeopleEndpoint : IEndpointDefinition
 {
     /// <inheritdoc />
     public static void Define(IEndpointRouteBuilder builder) => builder
-        .MapGet("executions", GetExecutions)
+        .MapGet("people", GetPeople)
         .RequireAuthorizationPolicy(Policies.People.ReadAll.Name)
         .WithTags(SwaggerTags.People)
         .WithDescription("Gets all people with pagination");
 
     // TBD
-    public static async Task<Results<Ok<string[]>, BadRequest<string>>> GetExecutions(
+    internal static async Task<Ok<Page<PersonDto>>> GetPeople(
+        IProvidePeople peopleProvider,
         [FromQuery(Name = "page")] int pageNumber = 1,
         [FromQuery(Name = "size"), Range(1, 500)] int pageSize = 100,
         CancellationToken token = default)
     {
-        await Task.CompletedTask;
-
-        string[] results = ["Person 1", "Person 2", "Person 3"];
-        return TypedResults.Ok(results);
+        var page = await peopleProvider.GetPeople(pageNumber, pageSize, token);
+        return TypedResults.Ok(page);
     }
 }
