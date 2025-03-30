@@ -22,7 +22,7 @@ public class PersonUpdater : IUpdatePerson
     {
         var person = new Person
         {
-            PersonId = Guid.Empty,
+            PersonId = command.PersonId,
             Name = new Name()
             {
                 FirstName = command.FirstName,
@@ -33,7 +33,10 @@ public class PersonUpdater : IUpdatePerson
                 : null,
         };
         
-        await _peopleRepository.Update(person, ct);
-        return Unit.Default;
+        var result = await _peopleRepository.Update(person, ct)
+            .ToAsync()
+            .MapLeft<ErrorResult>(x => x);
+        
+        return result;
     }
 }

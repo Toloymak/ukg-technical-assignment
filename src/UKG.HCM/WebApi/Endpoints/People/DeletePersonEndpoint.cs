@@ -15,7 +15,7 @@ public class DeletePersonEndpoint : IEndpointDefinition
 {
     /// <inheritdoc />
     public static void Define(IEndpointRouteBuilder builder) => builder
-        .MapGet("people/{personId:guid}", DeletePerson)
+        .MapDelete("people/{personId:guid}", DeletePerson)
         .RequireAuthorizationPolicy(Policies.People.Delete.Name)
         .WithTags(SwaggerTags.People)
         .WithDescription("Gets all people with pagination");

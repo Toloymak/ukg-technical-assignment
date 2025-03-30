@@ -9,8 +9,7 @@ public static class DbConfig
     {
         builder.Services.AddDbContext<AppDbContext>(optionsBuilder =>
             optionsBuilder.UseSqlServer(
-                builder.Configuration.GetConnectionString("SqlServer"),
-                options => options.EnableRetryOnFailure(1)));
+                builder.Configuration.GetConnectionString("SqlServer")));
     }
     
     public static async Task MigrateDatabaseAsync(this WebApplication app)

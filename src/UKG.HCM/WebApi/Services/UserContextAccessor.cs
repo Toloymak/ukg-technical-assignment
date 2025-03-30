@@ -18,6 +18,6 @@ public class WebApiUserContextAccessor : IUserContextAccessor
     public static WebApiUserContextAccessor CreateForService(string serviceName)
         => new()
         {
-            User = Guid.Empty
+            User = serviceName
         };
 }

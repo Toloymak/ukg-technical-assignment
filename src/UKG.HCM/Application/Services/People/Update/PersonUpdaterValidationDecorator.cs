@@ -12,7 +12,6 @@ public class PersonUpdaterValidationDecorator : IUpdatePerson
 
     public PersonUpdaterValidationDecorator(
         IUpdatePerson service,
-        IPeopleRepository peopleRepository,
         IPersonDataValidator validator)
     {
         _service = service;

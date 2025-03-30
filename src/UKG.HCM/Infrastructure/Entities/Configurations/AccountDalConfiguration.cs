@@ -31,6 +31,7 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
         builder.HasOne(a => a.Person)
             .WithOne(p => p.Account)
             .HasForeignKey<AccountDal>(a => a.PersonId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Looks like we can use Cascade delete here
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

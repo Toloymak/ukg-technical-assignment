@@ -5,15 +5,22 @@ using UKG.HCM.WebApi.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.ConfigureDb();
-builder.Services.AddOpenApi();
 builder.Services.AddWebApi();
+builder.ConfigureSwagger();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseDeveloperExceptionPage();
 }
+
+app.MapOpenApi();
+app.UseSwaggerUi(c =>
+{
+    c.DocumentPath = "/openapi/v1.json";
+    c.Path = string.Empty;
+});
 
 app.RegisterAllEndpoints();
 

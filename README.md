@@ -11,3 +11,11 @@ docker run \
   --name UKG.HCM \
   -d mcr.microsoft.com/mssql/server:2022-latest
 ```
+
+
+# Run integration tests
+1. Pull the latest MsSQL image
+```
+docker pull mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04
+```
+2. Run tests in WebApi.IntegrationTests

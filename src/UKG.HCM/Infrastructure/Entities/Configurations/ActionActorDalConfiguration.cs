@@ -24,7 +24,8 @@ internal class ActionActorDalConfiguration : IEntityTypeConfiguration<ActionActo
         builder.HasOne(a => a.Person)
             .WithMany()
             .HasForeignKey(a => a.PersonId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Looks like we can use Cascade delete here
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasData(new ActionActorDal(DefaultNames.AnonymousActorName)
         {
