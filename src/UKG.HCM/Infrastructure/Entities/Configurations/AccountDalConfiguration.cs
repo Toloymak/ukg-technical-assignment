@@ -1,3 +1,4 @@
+/*
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,10 +17,10 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
         builder.Property(x => x.Login)
             .IsRequired()
             .HasMaxLength(100);
-        
+
         builder.HasIndex(a => a.Login)
             .IsUnique();
-        
+
         builder.Property(a => a.Password)
             .IsRequired()
             .HasMaxLength(256);
@@ -27,7 +28,7 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
         builder.Property(a => a.PasswordSalt)
             .IsRequired()
             .HasMaxLength(256);
-        
+
         builder.HasOne(a => a.Person)
             .WithOne(p => p.Account)
             .HasForeignKey<AccountDal>(a => a.PersonId)
@@ -35,3 +36,4 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
+*/

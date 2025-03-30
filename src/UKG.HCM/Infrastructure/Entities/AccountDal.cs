@@ -1,14 +1,18 @@
+/*
+using Microsoft.AspNetCore.Identity;
+
 namespace UKG.HCM.Infrastructure.Entities;
 
-public class AccountDal
+public class AccountDal : IdentityUser
 {
     public Guid AccountId { get; set; }
     
-    public required string Login { get; set; }
+    public string Login { get; set; } = string.Empty;
     
-    public required string Password { get; set; }
-    public required string PasswordSalt { get; set; }
+    public string Password { get; set; } = string.Empty;
+    public string PasswordSalt { get; set; } = string.Empty;
     
-    public required Guid PersonId { get; set; }
+    public Guid PersonId { get; set; }
     public PersonDal? Person { get; set; }
 }
+*/
