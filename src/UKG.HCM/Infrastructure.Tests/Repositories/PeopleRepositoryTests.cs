@@ -1,14 +1,11 @@
 using AutoFixture;
 using CommonContracts.Constants;
 using FluentAssertions;
-using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using NUnit.Framework;
 using UKG.HCM.Application.Entities;
 using UKG.HCM.Application.Errors;
 using UKG.HCM.Application.Services;
-using UKG.HCM.Infrastructure.Entities;
 using UKG.HCM.Infrastructure.Repositories;
 using UnitTests.Common.Extensions;
 

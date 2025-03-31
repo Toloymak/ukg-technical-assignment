@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using UKG.HCM.Application.Services;
+using UKG.HCM.Application.Services.Accounts;
 using UKG.HCM.Application.Services.People;
 using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.Application.Services.People.Delete;
@@ -23,6 +24,9 @@ public static class CompositionRoot
             .AddTransient<IPersonDataValidator, PersonDataValidator>()
             .AddTransient<ICurrentActorProvider, CurrentActorProvider>()
             .AddSingleton<IProvideCurrentDateTime, DateTimeProvideCurrent>()
+            .AddTransient<ILoginAccount, AccountManager>()
+            .AddTransient<ISetPassword, AccountManager>()
+            .AddTransient<IPasswordService, PasswordService>()
             ;
         
         return services;

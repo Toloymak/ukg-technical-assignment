@@ -1,6 +1,5 @@
 using LanguageExt;
 using UKG.HCM.Application.Errors;
-using UKG.HCM.Application.Persistence;
 
 namespace UKG.HCM.Application.Services.People.Update;
 

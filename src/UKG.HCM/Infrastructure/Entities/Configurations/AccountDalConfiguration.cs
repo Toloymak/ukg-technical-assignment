@@ -1,4 +1,3 @@
-/*
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,7 +20,7 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
         builder.HasIndex(a => a.Login)
             .IsUnique();
 
-        builder.Property(a => a.Password)
+        builder.Property(a => a.PasswordHash)
             .IsRequired()
             .HasMaxLength(256);
 
@@ -34,6 +33,9 @@ internal class AccountDalConfiguration : IEntityTypeConfiguration<AccountDal>
             .HasForeignKey<AccountDal>(a => a.PersonId)
             // Looks like we can use Cascade delete here
             .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasMany(a => a.Roles)
+            .WithMany()
+            .UsingEntity(j => j.ToTable("AccountRoles"));
     }
 }
-*/

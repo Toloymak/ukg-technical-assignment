@@ -22,6 +22,21 @@ namespace UKG.HCM.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AccountDalRoleDal", b =>
+                {
+                    b.Property<Guid>("AccountDalAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("RolesName")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("AccountDalAccountId", "RolesName");
+
+                    b.HasIndex("RolesName");
+
+                    b.ToTable("AccountRoles", (string)null);
+                });
+
             modelBuilder.Entity("UKG.HCM.Infrastructure.Entities.AccountDal", b =>
                 {
                     b.Property<Guid>("AccountId")
@@ -33,7 +48,7 @@ namespace UKG.HCM.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -122,6 +137,46 @@ namespace UKG.HCM.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("People", (string)null);
+                });
+
+            modelBuilder.Entity("UKG.HCM.Infrastructure.Entities.RoleDal", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "HR ADMIN"
+                        },
+                        new
+                        {
+                            Name = "MANAGER"
+                        },
+                        new
+                        {
+                            Name = "EMPLOYEE"
+                        });
+                });
+
+            modelBuilder.Entity("AccountDalRoleDal", b =>
+                {
+                    b.HasOne("UKG.HCM.Infrastructure.Entities.AccountDal", null)
+                        .WithMany()
+                        .HasForeignKey("AccountDalAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UKG.HCM.Infrastructure.Entities.RoleDal", null)
+                        .WithMany()
+                        .HasForeignKey("RolesName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("UKG.HCM.Infrastructure.Entities.AccountDal", b =>

@@ -11,6 +11,7 @@ public static class CompositionRoot
         services
             .AddTransient<IPeopleRepository, PeopleRepository>()
             .AddTransient<IActorsRepository, ActorsRepository>()
+            .AddTransient<IAccountRepository, AccountRepository>()
             ;
         
         return services;

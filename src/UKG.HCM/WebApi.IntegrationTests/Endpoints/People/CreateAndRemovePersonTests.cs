@@ -2,9 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using ApiContracts.Dtos.People;
 using AutoFixture;
-using CommonContracts.Types;
 using FluentAssertions;
-using UKG.HCM.Infrastructure.Entities;
 using WebApi.IntegrationTests.Infrastructure;
 
 namespace WebApi.IntegrationTests.Endpoints.People;

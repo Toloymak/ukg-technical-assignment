@@ -1,6 +1,18 @@
-@UKG.HCM_HostAddress = http://localhost:5261
+@HCM_HostAddress = http://localhost:5261
 
-GET {{UKG.HCM_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. Login as Admin
+POST {{HCM_HostAddress}}/auth/login
+Content-Type: application/json
 
-###
+{
+  "login": "admin",
+  "password": "Pass1234"
+}
+
+> {%
+    client.global.set("accessToken", response.body.accessToken);
+%}
+
+### 2. Get all people (requires authorization)
+GET {{HCM_HostAddress}}/people
+Authorization: Bearer {{accessToken}}

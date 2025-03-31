@@ -1,11 +1,10 @@
 using ApiContracts.Dtos.People;
 using UKG.HCM.Application;
-using UKG.HCM.Application.Persistence;
 using UKG.HCM.Application.Services;
 using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.Application.Services.People.Update;
 using UKG.HCM.Infrastructure;
-using UKG.HCM.Infrastructure.Repositories;
+using UKG.HCM.WebApi.Endpoints.Login;
 using UKG.HCM.WebApi.Mappers;
 using UKG.HCM.WebApi.Services;
 
@@ -13,8 +12,12 @@ namespace UKG.HCM.WebApi;
 
 public static class CompositionRoot
 {
-    public static IServiceCollection AddWebApi(this IServiceCollection services)
+    public static void AddWebApiDependencies(this WebApplicationBuilder builder)
     {
+        var services = builder.Services;
+        
+        services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
+
         services.AddHttpContextAccessor();
         services.AddScoped<UserContextAccessorFactory>();
         services.AddScoped<IUserContextAccessor>(sp =>
@@ -30,10 +33,8 @@ public static class CompositionRoot
         services
             .AddTransient<IMap<CreatePersonRequest, PersonCreateCommand>, PeopleMapper>()
             .AddTransient<IMapWithKey<Guid, UpdatePersonRequest, PersonUpdateCommand>, PeopleMapper>()
+            .AddTransient<ISeedData, DataSeeder>()
+            .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             ;
-        
-        
-        return services;
     }
-    
 }
