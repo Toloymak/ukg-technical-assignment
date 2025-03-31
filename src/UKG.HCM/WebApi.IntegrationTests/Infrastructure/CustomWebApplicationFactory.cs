@@ -20,7 +20,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         _container = new MsSqlBuilder()
             .WithPassword(MsSqlServerPassword)
             .WithImage(MsSqlServer2022)
-            .WithName($"UKG_HCM_IntegrationTests_MsSql_{DateTime.Now.Ticks}")
+            .WithName($"UKG_HCM_IntegrationTests_MsSql_{Guid.NewGuid():N}")
             .WithCleanUp(true)
             .Build();
     }

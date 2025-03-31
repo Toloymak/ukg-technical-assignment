@@ -1,10 +1,13 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using ApiContracts.Dtos.People;
 using AutoFixture;
 using CommonContracts.Types;
 using FluentAssertions;
+using UKG.HCM.WebApi.Endpoints.Login;
 using WebApi.IntegrationTests.Infrastructure;
+using WebApi.IntegrationTests.Infrastructure.Extensions;
 
 namespace WebApi.IntegrationTests.Endpoints.People;
 
@@ -16,6 +19,8 @@ public class CreateAndGetPersonTests : BaseIntegrationTest
     {
         // Arrange
         var client = GetClient();
+        await client.LoginAs(Admin);
+        
         var request = new CreatePersonRequest
         {
             Email = $"{Guid.NewGuid()}@example.com",

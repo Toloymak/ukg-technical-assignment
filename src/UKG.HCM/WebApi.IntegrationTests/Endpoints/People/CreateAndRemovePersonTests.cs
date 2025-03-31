@@ -4,6 +4,7 @@ using ApiContracts.Dtos.People;
 using AutoFixture;
 using FluentAssertions;
 using WebApi.IntegrationTests.Infrastructure;
+using WebApi.IntegrationTests.Infrastructure.Extensions;
 
 namespace WebApi.IntegrationTests.Endpoints.People;
 
@@ -15,6 +16,8 @@ public class CreateAndRemovePersonTests : BaseIntegrationTest
     {
         // Arrange
         var client = GetClient();
+        await client.LoginAs(Admin);
+
         var request = new CreatePersonRequest
         {
             Email = $"{Guid.NewGuid()}@example.com",

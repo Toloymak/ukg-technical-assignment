@@ -1,4 +1,5 @@
 using AutoFixture;
+using UKG.HCM.WebApi.Endpoints.Login;
 
 namespace WebApi.IntegrationTests.Infrastructure;
 
@@ -31,4 +32,7 @@ public class BaseIntegrationTest : IAsyncDisposable
         if (_webApplicationFactory != null)
             await _webApplicationFactory.DisposeAsync();
     }
+
+    // TODO: Use parameters from appsettings.json instead
+    protected static readonly LogInRequest Admin = new("admin", "Pass1234");
 }
