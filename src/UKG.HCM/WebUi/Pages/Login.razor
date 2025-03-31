@@ -1,0 +1,32 @@
+@page "/Login"
+@using WebUi.Models
+@using WebUi.Services
+@inject AuthService Auth
+@inject NavigationManager Nav
+
+<h3>Login</h3>
+
+<EditForm Model="@_loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px">
+        <InputText @bind-Value="_loginModel.Login" placeholder="Login" class="form-control"/>
+        <InputText @bind-Value="_loginModel.Password" placeholder="Password" type="password" class="form-control"/>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+    
+</EditForm>
+
+@code {
+    private readonly LoginRequest _loginModel = new();
+
+    private async Task HandleLogin()
+    {
+        var success = await Auth.LoginAsync(_loginModel);
+        if (success)
+        {
+            Nav.NavigateTo("/");
+        }
+    }
+}

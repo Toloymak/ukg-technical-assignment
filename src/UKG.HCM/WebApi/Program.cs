@@ -15,6 +15,18 @@ builder.AddWebApiDependencies();
 builder.ConfigureSwagger();
 builder.AddAuthenticationAndAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("UI", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5361")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -29,6 +41,10 @@ app.UseSwaggerUi(c =>
     c.DocumentPath = "/openapi/v1.json";
     c.Path = string.Empty;
 });
+
+app.UseCors("UI");
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.RegisterAllEndpoints();
 

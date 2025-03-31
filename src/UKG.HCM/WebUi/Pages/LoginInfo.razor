@@ -1,24 +1,23 @@
-﻿@page "/"
 @using Microsoft.AspNetCore.Authorization
 @using WebUi.Extensions
 @using WebUi.Models
-@attribute [Authorize]
+@using WebUi.Components
 @inject AuthenticationStateProvider AuthStateProvider
+@attribute [Authorize]
+@page "/auth/info"
 
+<h1>Test page to check auth</h1>
 
-<h1>Welcome, @Name!</h1>
-
-<p>You are on your fantastic <b>HUMAN CAPITAL MANAGEMENT APP</b></p>
-<p>Just use a menu to navigate!</p>
+<AuthInfo User="_user" IsAuthenticated="_isAuthenticated" />
 
 @code{
-    private string Name { get; set; } = string.Empty;
     private CurrentUser _user = new();
-    
+    private bool _isAuthenticated;
+
     protected override async Task OnInitializedAsync()
     {
         var state = await AuthStateProvider.GetAuthenticationStateAsync();
         _user = state.User.ToCurrentUser();
-        Name = $"{_user.FirstName} {_user.LastName}";
+        _isAuthenticated = state.User.Identity?.IsAuthenticated ?? false;
     }
 }

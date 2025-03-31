@@ -26,7 +26,7 @@ public class CreateAndRemovePersonTests : BaseIntegrationTest
         };
         
         // Act
-        var response = await client.PostAsJsonAsync("people/create", request);
+        var response = await client.PostAsJsonAsync("people", request);
         
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);

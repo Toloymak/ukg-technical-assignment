@@ -1,0 +1,22 @@
+@using WebUi.Models
+<div style="display: flex; flex-direction: column; gap: 15px">
+    <div>Is authenticated: @IsAuthenticated</div>
+    <div>@User.Login</div>
+    <div>@User.FirstName</div>
+    <div>@User.LastName</div>
+
+    <div>Roles:</div>
+    @foreach(var role in User.Roles)
+    {
+        <div>@role</div>
+    }
+</div>
+
+@code{
+
+    [Parameter, EditorRequired]
+    public CurrentUser User { get; set; } = null!;
+    
+    [Parameter, EditorRequired]
+    public bool IsAuthenticated { get; set; }
+}

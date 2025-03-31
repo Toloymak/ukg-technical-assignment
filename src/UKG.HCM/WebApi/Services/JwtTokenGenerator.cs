@@ -33,7 +33,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, account.AccountId.ToString()),
-            new("Login", account.Login),
+            new(ClaimTypes.Name, account.Login),
             new(ClaimTypes.GivenName, account.Person.Name.FirstName),
             new(ClaimTypes.Surname, account.Person.Name.LastName),
         };

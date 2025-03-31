@@ -1,0 +1,107 @@
+@using System.Net
+@using CommonContracts.Types
+@using Microsoft.AspNetCore.Authorization
+@using WebUi.Components
+@inject HttpClient Client
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@page "/people"
+@attribute [Authorize]
+
+<h1>List of people</h1>
+
+<MudButton OnClick="OpenCreateDialog" Color="Color.Primary">Create new person</MudButton>
+
+<MudDataGrid Loading="_loading" Items="_people"
+             SortMode="SortMode.None"
+             Filterable="false">
+    <Columns>
+        <PropertyColumn Property="x => x.Email" Title="Email"/>
+        <PropertyColumn Property="x => x.FirstName" Title="First name"/>
+        <PropertyColumn Property="x => x.LastName" Title="Last name"/>
+        <TemplateColumn>
+            <CellTemplate>
+                @if (context.Item != null)
+                {
+                    
+                    <MudButton Color="Color.Info"
+                               OnClick="@(() => OpenEditDialog(context.Item.PersonId))">
+                        Edit
+                    </MudButton>
+                    <MudButton Color="Color.Error"
+                               OnClick="@(() => Delete(context.Item.PersonId))">
+                        Delete
+                    </MudButton>
+                }
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+<MudPagination @bind-Selected="_pageNumber"
+               Style="margin-top: 20px"
+               @bind-Selected:after="GetPeople"
+               Count="_totalPages"/>
+
+@code{
+    private IReadOnlyCollection<PersonDto> _people = [];
+    private bool _loading = true;
+    private int _totalPages = 1;
+    private int _pageNumber = 1;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await GetPeople();
+    }
+
+    private async Task GetPeople()
+    {
+        var response = await Client.GetAsync($"people?page={_pageNumber}&size={5}");
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            Snackbar.Add("Error loading people", Severity.Error);
+            return;
+        }
+        
+        var people = await response.Content.ReadFromJsonAsync<Page<PersonDto>>();
+        if (people == null)
+        {
+            Snackbar.Add("Error loading people. Can't read data", Severity.Error);
+            return;
+        }
+        
+        _people = people.Items;
+        _totalPages = people.TotalPages;
+        _loading = false;
+    }
+    
+    private async Task Delete(Guid personId)
+    {
+        var response = await Client.DeleteAsync($"people/{personId}");
+        if (response.StatusCode != HttpStatusCode.NoContent)
+        {
+            Snackbar.Add("Error deleting person", Severity.Error);
+            return;
+        }
+        
+        await GetPeople();
+    }
+    
+    private async Task OpenEditDialog(Guid personId)
+    {
+        var result = await DialogService.ShowAsync<EditPersonDialog>("Create new person", new DialogParameters
+        {
+            { nameof(EditPersonDialog.PersonId), personId }
+        });
+        await result.Result;
+        await GetPeople();
+    }
+
+    private async Task OpenCreateDialog()
+    {
+        var result = await DialogService.ShowAsync<AddPersonDialog>("Create new person");
+        await result.Result;
+
+        await GetPeople();
+    }
+}

@@ -7,17 +7,26 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="LanguageExt.Core" Version="4.4.8" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.0"/>
+        <PackageReference Include="MudBlazor" Version="8.5.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Handlers\" />
       <Folder Include="wwwroot\sample-data\" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="wwwroot\sample-data\weather.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiContracts\ApiContracts.csproj" />
+      <ProjectReference Include="..\CommonContracts\CommonContracts.csproj" />
     </ItemGroup>
 
 </Project>

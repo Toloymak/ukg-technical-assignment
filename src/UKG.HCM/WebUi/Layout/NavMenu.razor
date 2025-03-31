@@ -1,6 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using CommonContracts.Constants
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">WebUi</a>
+        <a class="navbar-brand" href="">UKG.HCM</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,27 +15,33 @@
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+
+        <AuthorizeView>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="people" Match="NavLinkMatch.All">
+                    <span class="bi bi-file-person" aria-hidden="true"></span> People
+                </NavLink>
+            </div>
+        </AuthorizeView>
+        
+        <AuthorizeView Roles="@Roles.HrAdmin">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="auth/info" Match="NavLinkMatch.All">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Auth info
+                </NavLink>
+            </div>
+        </AuthorizeView>
     </nav>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+    private bool _collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
-        collapseNavMenu = !collapseNavMenu;
+        _collapseNavMenu = !_collapseNavMenu;
     }
 
 }

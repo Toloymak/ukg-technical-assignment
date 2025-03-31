@@ -1,0 +1,91 @@
+@using System.ComponentModel.DataAnnotations
+@using ApiContracts.Dtos.People
+@using CommonContracts.Types
+@inject HttpClient Client
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Create"/>
+            Update person
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudStack>
+            <MudInput @bind-Value="_model.Email" Placeholder="Email"></MudInput>
+            <MudInput @bind-Value="_model.FirstName" Placeholder="First name"></MudInput>
+            <MudInput @bind-Value="_model.LastName" Placeholder="Last name"></MudInput>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Success" OnClick="Update">Update</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code{
+    [Parameter, Required]
+    public Guid PersonId { get; set; }
+
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    private UpdateModel _model = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var person = await Client.GetAsync($"people/{PersonId}");
+        if (!person.IsSuccessStatusCode)
+        {
+            Snackbar.Add("Error loading person", Severity.Error);
+            MudDialog.Cancel();
+            return;
+        }
+        
+        var personDto = await person.Content.ReadFromJsonAsync<PersonDto>();
+        if (personDto == null)
+        {
+            Snackbar.Add("Error loading person", Severity.Error);
+            MudDialog.Cancel();
+            return;
+        }
+        
+        _model = new UpdateModel()
+        {
+            PersonId = personDto.PersonId,
+            Email = personDto.Email ?? string.Empty,
+            FirstName = personDto.FirstName,
+            LastName = personDto.LastName
+        };
+    }
+
+    public async Task Update()
+    {
+        var request = new UpdatePersonRequest()
+        {
+            Email = _model.Email,
+            FirstName = _model.FirstName,
+            LastName = _model.LastName
+        };
+        var client = await Client.PutAsJsonAsync($"people/{PersonId}", request);
+        if (!client.IsSuccessStatusCode)
+        {
+            Snackbar.Add("Error creating person", Severity.Error);
+            return;
+        }
+        
+        Snackbar.Add("Person created", Severity.Success);
+        MudDialog.Close(DialogResult.Ok(await client.Content.ReadAsStringAsync()));
+    }
+    
+    private void Cancel() => MudDialog.Cancel();
+    
+    private record UpdateModel
+    {
+        public Guid PersonId { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+    }
+}

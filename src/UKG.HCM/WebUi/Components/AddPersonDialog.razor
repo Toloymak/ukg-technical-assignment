@@ -1,0 +1,64 @@
+@using ApiContracts.Dtos.People
+@inject HttpClient Client
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.Create"/>
+            Create new person
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudStack>
+            <MudInput @bind-Value="_model.Email" Placeholder="Email"></MudInput>
+            <MudInput @bind-Value="_model.FirstName" Placeholder="First name"></MudInput>
+            <MudInput @bind-Value="_model.LastName" Placeholder="Last name"></MudInput>
+        </MudStack>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Success" OnClick="Create">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code{
+
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = null!;
+
+    private CreateModel _model = new();
+
+    protected override void OnInitialized()
+    {
+        _model = new();
+    }
+
+    public async Task Create()
+    {
+        var request = new CreatePersonRequest()
+        {
+            Email = _model.Email,
+            FirstName = _model.FirstName,
+            LastName = _model.LastName
+        };
+        var client = await Client.PostAsJsonAsync("people", request);
+        if (!client.IsSuccessStatusCode)
+        {
+            Snackbar.Add("Error creating person", Severity.Error);
+            return;
+        }
+        
+        Snackbar.Add("Person created", Severity.Success);
+        MudDialog.Close(DialogResult.Ok(await client.Content.ReadAsStringAsync()));
+    }
+    
+    private void Cancel() => MudDialog.Cancel();
+    
+    private record CreateModel
+    {
+        public string Email { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+    }
+}

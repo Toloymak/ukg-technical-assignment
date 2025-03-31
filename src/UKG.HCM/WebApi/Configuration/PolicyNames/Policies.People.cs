@@ -1,4 +1,4 @@
-using UKG.HCM.WebApi.Contracts;
+using CommonContracts.Constants;
 
 namespace UKG.HCM.WebApi.Configuration.PolicyNames;
 

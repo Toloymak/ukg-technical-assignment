@@ -1,11 +1,9 @@
 using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using ApiContracts.Dtos.People;
 using AutoFixture;
 using CommonContracts.Types;
 using FluentAssertions;
-using UKG.HCM.WebApi.Endpoints.Login;
 using WebApi.IntegrationTests.Infrastructure;
 using WebApi.IntegrationTests.Infrastructure.Extensions;
 
@@ -29,7 +27,7 @@ public class CreateAndGetPersonTests : BaseIntegrationTest
         };
 
         // Act
-        var response = await client.PostAsJsonAsync("people/create", request);
+        var response = await client.PostAsJsonAsync("people", request);
         
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
