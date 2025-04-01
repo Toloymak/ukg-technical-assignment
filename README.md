@@ -88,6 +88,7 @@ docker run \
   --name UKG.HCM \
   -d mcr.microsoft.com/mssql/server:2022-latest
 ```
+2. Run Azure Aspire service or WebApi and WebUI projects separately
 
 ## Default seeds
 You can log in to the app using following credentials:
