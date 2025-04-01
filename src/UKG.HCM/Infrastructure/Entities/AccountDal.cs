@@ -1,5 +1,6 @@
 namespace UKG.HCM.Infrastructure.Entities;
 
+/// Account entity. Account - is a user of the system, that can be logged in.
 public class AccountDal
 {
     public Guid AccountId { get; set; }

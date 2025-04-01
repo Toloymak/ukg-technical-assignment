@@ -1,7 +1,7 @@
 
 namespace UKG.HCM.Application.Entities;
 
-public class Account
+public record Account
 {
     public required Guid AccountId { get; init; }
     

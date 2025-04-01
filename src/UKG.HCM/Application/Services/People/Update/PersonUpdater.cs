@@ -1,5 +1,6 @@
 using LanguageExt;
 using UKG.HCM.Application.Entities;
+using UKG.HCM.Application.Entities.BaseTypes;
 using UKG.HCM.Application.Errors;
 using UKG.HCM.Application.Persistence;
 

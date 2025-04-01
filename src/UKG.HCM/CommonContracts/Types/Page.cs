@@ -1,6 +1,6 @@
 namespace CommonContracts.Types;
 
-public class Page<T>
+public record Page<T>
 {
     public required IReadOnlyCollection<T> Items { get; set; }
     

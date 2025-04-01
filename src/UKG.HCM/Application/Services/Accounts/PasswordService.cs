@@ -1,12 +1,8 @@
 namespace UKG.HCM.Application.Services.Accounts;
 
-public interface IPasswordService
+internal class PasswordService : IPasswordService
 {
-    (string hashedPassword, string salt) GenerateHashAndSalt(string password);
-}
-
-public class PasswordService : IPasswordService
-{
+    /// <inheritdoc />
     public (string hashedPassword, string salt) GenerateHashAndSalt(string password)
     {
         var salt = BCrypt.Net.BCrypt.GenerateSalt();

@@ -6,16 +6,19 @@ using Microsoft.IdentityModel.Tokens;
 using UKG.HCM.Application.Entities;
 using UKG.HCM.Application.Services;
 using UKG.HCM.WebApi.Endpoints.Login;
+using UKG.HCM.WebApi.Models;
 
 namespace UKG.HCM.WebApi.Services;
 
 
 public interface IJwtTokenGenerator
 {
+    /// Generate
     string Generate(Account account);
 }
 
-public class JwtTokenGenerator : IJwtTokenGenerator
+
+internal class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly JwtOptions _options;
     private readonly IProvideCurrentDateTime _time;

@@ -19,6 +19,7 @@ internal class UserContextAccessorFactory : IUserContextAccessorFactory
         _httpContextAccessor = httpContextAccessor;
     }
 
+    /// <inheritdoc />
     public IUserContextAccessor Create()
     {
         var user = _httpContextAccessor.HttpContext?.User;

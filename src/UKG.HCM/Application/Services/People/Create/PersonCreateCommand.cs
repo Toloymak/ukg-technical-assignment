@@ -1,9 +1,9 @@
 namespace UKG.HCM.Application.Services.People.Create;
 
-public class PersonCreateCommand
+public record PersonCreateCommand
 {
-    public required string? Email { get; set; }
+    public required string? Email { get; init; }
     
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
+    public required string FirstName { get; init; }
+    public required string LastName { get; init; }
 }

@@ -6,6 +6,7 @@ namespace UKG.HCM.WebApi.Configuration;
 /// OpenApi configuration
 public static class SwaggerConfig
 {
+    /// Configures Swagger for the application.
     public static WebApplicationBuilder ConfigureSwagger(this WebApplicationBuilder builder)
     {
         builder.Services

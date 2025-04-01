@@ -13,7 +13,7 @@ public class LoginEndpoint : IEndpointDefinition
             .WithTags("Auth")
             .WithDescription("Login and receive a JWT token.");
     
-    internal static async Task<Results<Ok<AuthResponse>, UnauthorizedHttpResult>> LogIn(
+    private static async Task<Results<Ok<AuthResponse>, UnauthorizedHttpResult>> LogIn(
         [FromBody] LogInRequest request,
         ILoginAccount accounts,
         IJwtTokenGenerator tokenGenerator,
@@ -31,9 +31,3 @@ public class LoginEndpoint : IEndpointDefinition
 
 public record LogInRequest(string Login, string Password);
 public record AuthResponse(string AccessToken);
-
-
-public class JwtOptions
-{
-    public required string SigningKey { get; init; }
-}

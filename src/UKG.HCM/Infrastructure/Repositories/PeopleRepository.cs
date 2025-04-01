@@ -11,6 +11,7 @@ using UKG.HCM.Infrastructure.Extensions;
 
 namespace UKG.HCM.Infrastructure.Repositories;
 
+/// <inheritdoc />
 public class PeopleRepository : IPeopleRepository
 {
     private readonly AppDbContext _context;

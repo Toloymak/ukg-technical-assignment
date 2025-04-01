@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UKG.HCM.Application.Entities;
+using UKG.HCM.Application.Entities.BaseTypes;
 using UKG.HCM.Application.Services.Accounts;
 using UKG.HCM.Application.Services.People.Create;
 using UKG.HCM.Infrastructure.Contexts;
@@ -13,7 +14,7 @@ public interface ISeedData
     Task SeedTestData();
 }
 
-public class DataSeeder : ISeedData
+internal class DataSeeder : ISeedData
 {
     private readonly AppDbContext _context;
     private readonly ICreatePerson _personCreator;
@@ -32,6 +33,7 @@ public class DataSeeder : ISeedData
         _setPassword = setPassword;
     }
 
+    /// It's better to use a config if we will decide to use it in different environments
     private const string DefaultAccountPassword = "Pass1234";
 
     /// <inheritdoc />

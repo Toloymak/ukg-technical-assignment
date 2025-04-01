@@ -6,6 +6,7 @@ using UKG.HCM.Application.Services.People.Update;
 using UKG.HCM.Infrastructure;
 using UKG.HCM.WebApi.Endpoints.Login;
 using UKG.HCM.WebApi.Mappers;
+using UKG.HCM.WebApi.Models;
 using UKG.HCM.WebApi.Services;
 
 namespace UKG.HCM.WebApi;
@@ -19,10 +20,10 @@ public static class CompositionRoot
         services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 
         services.AddHttpContextAccessor();
-        services.AddScoped<UserContextAccessorFactory>();
+        services.AddScoped<IUserContextAccessorFactory, UserContextAccessorFactory>();
         services.AddScoped<IUserContextAccessor>(sp =>
         {
-            var factory = sp.GetRequiredService<UserContextAccessorFactory>();
+            var factory = sp.GetRequiredService<IUserContextAccessorFactory>();
             return factory.Create();
         });
         

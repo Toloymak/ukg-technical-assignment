@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 namespace UKG.HCM.WebApi.Endpoints;
 
 /// An endpoint definition
+/// Used to register endpoints in the WebApi assembly
 [UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
 public interface IEndpointDefinition
 {

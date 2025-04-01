@@ -1,7 +1,7 @@
 namespace CommonContracts.Types;
 
 // TODO: Move it to API contracts
-public class PersonDto
+public record PersonDto
 {
     public required Guid PersonId { get; init; }
     

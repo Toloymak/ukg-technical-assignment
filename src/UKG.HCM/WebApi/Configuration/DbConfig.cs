@@ -6,6 +6,7 @@ namespace UKG.HCM.WebApi.Configuration;
 
 public static class DbConfig
 {
+    /// Configures the database context for the application.
     public static void ConfigureDb(this WebApplicationBuilder builder)
     {
         builder.Services.AddDbContext<AppDbContext>(optionsBuilder =>
@@ -13,6 +14,7 @@ public static class DbConfig
                 builder.Configuration.GetConnectionString("SqlServer")));
     }
     
+    /// Migrates the database to the latest version.
     public static async Task MigrateDatabaseAsync(this WebApplication app)
     {
         await using var scope = app.Services.CreateAsyncScope();
@@ -21,6 +23,7 @@ public static class DbConfig
         await dbContext.Database.MigrateAsync();
     }
     
+    /// Seeds test data into the database.
     public static async Task SeedTestData(this WebApplication app)
     {
         await using var scope = app.Services.CreateAsyncScope();

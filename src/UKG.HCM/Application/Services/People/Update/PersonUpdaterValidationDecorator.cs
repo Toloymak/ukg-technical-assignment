@@ -1,9 +1,11 @@
+using JetBrains.Annotations;
 using LanguageExt;
 using UKG.HCM.Application.Errors;
 
 namespace UKG.HCM.Application.Services.People.Update;
 
 /// <inheritdoc />
+[UsedImplicitly]
 public class PersonUpdaterValidationDecorator : IUpdatePerson
 {
     private readonly IUpdatePerson _service;

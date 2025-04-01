@@ -9,6 +9,7 @@ public interface ICurrentActorProvider
     Task<Guid> GetActorGuid(CancellationToken ct);
 }
 
+/// <inheritdoc />
 internal class CurrentActorProvider : ICurrentActorProvider
 {
     private readonly IUserContextAccessor _accessor;
@@ -21,7 +22,8 @@ internal class CurrentActorProvider : ICurrentActorProvider
         _accessor = accessor;
         _actorsesRepository = actorsesRepository;
     }
-    
+
+    /// <inheritdoc />
     public Task<Guid> GetActorGuid(CancellationToken ct)
     {
         return _accessor.User

@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 using UKG.HCM.Application.Entities;
+using UKG.HCM.Application.Entities.BaseTypes;
 using UKG.HCM.Application.Errors;
 using UKG.HCM.Application.Persistence;
 using UKG.HCM.Infrastructure.Contexts;

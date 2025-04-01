@@ -14,19 +14,7 @@ builder.ConfigureDb();
 builder.AddWebApiDependencies();
 builder.ConfigureSwagger();
 builder.AddAuthenticationAndAuthorization();
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("UI", policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:5361")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-    });
-});
-
+builder.ConfigureCors();
 
 var app = builder.Build();
 
@@ -42,7 +30,7 @@ app.UseSwaggerUi(c =>
     c.Path = string.Empty;
 });
 
-app.UseCors("UI");
+app.UseCors("UI"); // Mobe policy name to config
 app.UseAuthentication();
 app.UseAuthorization();
 

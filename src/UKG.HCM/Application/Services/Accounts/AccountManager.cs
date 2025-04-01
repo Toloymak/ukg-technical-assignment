@@ -6,23 +6,8 @@ using UKG.HCM.Application.Persistence;
 
 namespace UKG.HCM.Application.Services.Accounts;
 
-public interface ILoginAccount
-{
-    // Login account
-    Task<Either<ErrorResult, Account>> LoginAccount(
-        string login, string password, CancellationToken ct);
-
-}
-
-/// Set password
-public interface ISetPassword
-{
-    /// Set new password to account
-    Task<Either<ErrorResult, Unit>> SetPassword(
-        Guid accountId, string password, CancellationToken ct);
-}
-
-public class AccountManager : ILoginAccount, ISetPassword
+/// Manage account
+internal class AccountManager : ILoginAccount, ISetPassword
 {
     private readonly IAccountRepository _account;
     private readonly ILogger<AccountManager> _logger;
@@ -38,6 +23,7 @@ public class AccountManager : ILoginAccount, ISetPassword
         _passwordService = passwordService;
     }
 
+    /// <inheritdoc />
     public async Task<Either<ErrorResult, Account>> LoginAccount(string login, string password, CancellationToken ct)
     {
         var account = await _account.GetAccountByLogin(login, ct);
@@ -57,6 +43,7 @@ public class AccountManager : ILoginAccount, ISetPassword
         return account;
     }
 
+    /// <inheritdoc />
     public async Task<Either<ErrorResult, Unit>> SetPassword(Guid accountId, string password, CancellationToken ct)
     {
         var account = await _account.GetAccount(accountId, ct);
