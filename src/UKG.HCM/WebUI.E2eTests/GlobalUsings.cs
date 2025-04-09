@@ -1,0 +1,1 @@
+global using static UKG.HCM.WebUI.E2eTests.Helpers.BySelectors;

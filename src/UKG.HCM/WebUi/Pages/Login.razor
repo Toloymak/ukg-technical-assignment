@@ -11,9 +11,19 @@
     <ValidationSummary />
 
     <div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px">
-        <InputText @bind-Value="_loginModel.Login" placeholder="Login" class="form-control"/>
-        <InputText @bind-Value="_loginModel.Password" placeholder="Password" type="password" class="form-control"/>
-        <button class="btn btn-primary" type="submit">Login</button>
+        <MudInput @bind-Value="_loginModel.Login"
+                  UserAttributes="@(GetAttributeForBlazor("login"))"
+                  Placeholder="Login"
+                  Class="form-control"/>
+        
+        <MudInput @bind-Value="_loginModel.Password"
+                  UserAttributes="@(GetAttributeForBlazor("pass"))"
+                  Placeholder="Password"
+                  InputType="InputType.Password"
+                  Class="form-control"/>
+        
+        <MudButton Color="Color.Primary" ButtonType="ButtonType.Submit"
+                   UserAttributes="@(GetAttributeForBlazor("login-btn"))">Login</MudButton>
     </div>
     
 </EditForm>
