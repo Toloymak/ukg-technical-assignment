@@ -1,0 +1,1 @@
+global using static WebUi.Helpers.TestAttributeBuilder;
